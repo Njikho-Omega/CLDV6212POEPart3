@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|c:\\users\\omega\\documents\\school\\cldv\\poepart2\\cldv6212poepart2-\\abcretailerspoe\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16C8B7CA-4269-4411-8EE4-FB0F7D9CD6EE}|..\\ABCRetailers.Functions\\ABCRetailers.Functions.csproj|c:\\users\\omega\\documents\\school\\cldv\\poepart2\\cldv6212poepart2-\\abcretailers.functions\\functions\\customersfunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16C8B7CA-4269-4411-8EE4-FB0F7D9CD6EE}|..\\ABCRetailers.Functions\\ABCRetailers.Functions.csproj|c:\\users\\omega\\documents\\school\\cldv\\poepart2\\cldv6212poepart2-\\abcretailers.functions\\functions\\ordersfunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-06T20:37:10.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrdersFunctions.cs",
+              "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailers.Functions\\Functions\\OrdersFunctions.cs",
+              "RelativeDocumentMoniker": "..\\ABCRetailers.Functions\\Functions\\OrdersFunctions.cs",
+              "ToolTip": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailers.Functions\\Functions\\OrdersFunctions.cs",
+              "RelativeToolTip": "..\\ABCRetailers.Functions\\Functions\\OrdersFunctions.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwKcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-06T19:32:23.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustomersFunctions.cs",
+              "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailers.Functions\\Functions\\CustomersFunctions.cs",
+              "RelativeDocumentMoniker": "..\\ABCRetailers.Functions\\Functions\\CustomersFunctions.cs",
+              "ToolTip": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailers.Functions\\Functions\\CustomersFunctions.cs",
+              "RelativeToolTip": "..\\ABCRetailers.Functions\\Functions\\CustomersFunctions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-06T19:31:45.35Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
