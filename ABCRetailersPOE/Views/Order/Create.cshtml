@@ -1,9 +1,14 @@
-﻿@model ABCRetailersPOE.Models.ViewModels.OrderCreateViewModel
+﻿@model ABCRetailers.Models.ViewModels.OrderCreateViewModel
 @{
     ViewData["Title"] = "Create Order";
+    var isCustomer = User.IsInRole("Customer");
+    var isAdmin = User.IsInRole("Admin");
 }
 
-<h2><i class="fas fa-shopping-cart"></i> Add Order</h2>
+<h2>
+    <i class="fas fa-shopping-cart"></i>
+    @(isAdmin ? "Create Order for Customer" : "Place New Order")
+</h2>
 
 <div class="row">
     <div class="col-md-8">
@@ -11,14 +16,28 @@
             @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group mb-3">
-                <label asp-for="CustomerId" class="form-label">Select Customer</label>
-                <select asp-for="CustomerId" class="form-select" id="customerSelect"
-                        asp-items="@(new SelectList(Model.Customers, nameof(ABCRetailersPOE.Models.Customer.Id), nameof(ABCRetailersPOE.Models.Customer.Username)))">
-                    <option value="">-- Select Customer --</option>
-                </select>
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
-            </div>
+            @if (isAdmin)
+            {
+                <!-- Admin sees customer dropdown -->
+                <div class="form-group mb-3">
+                    <label asp-for="CustomerId" class="form-label">Select Customer</label>
+                    <select asp-for="CustomerId" class="form-select" id="customerSelect"
+                            asp-items="@(new SelectList(Model.Customers, nameof(ABCRetailersPOE.Models.Customer.Id), nameof(ABCRetailersPOE.Models.Customer.Username)))">
+                        <option value="">-- Select Customer --</option>
+                    </select>
+                    <span asp-validation-for="CustomerId" class="text-danger"></span>
+                </div>
+            }
+            else if (isCustomer)
+            {
+                <!-- Customer sees their own info (readonly) -->
+                <div class="form-group mb-3">
+                    <label class="form-label">Customer</label>
+                    <input type="text" class="form-control" value="@User.Identity.Name" readonly />
+                    <div class="form-text">Your account will be automatically associated with this order.</div>
+                    <input type="hidden" asp-for="CustomerId" value="@Model.CustomerId" />
+                </div>
+            }
 
             <div class="form-group mb-3">
                 <label asp-for="ProductId" class="form-label">Select Product</label>
@@ -56,16 +75,16 @@
                 <select class="form-select" disabled>
                     <option selected>Submitted (Default)</option>
                 </select>
-                @* IMPORTANT: disabled fields don't post; send the value via hidden input *@
                 <input type="hidden" asp-for="Status" value="Submitted" />
                 <div class="form-text">Status will be set to <strong>Submitted</strong> when the order is created.</div>
             </div>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary" id="submitBtn">
-                    <i class="fas fa-save"></i> Create Order
+                    <i class="fas fa-save"></i>
+                    @(isAdmin ? "Create Order" : "Place Order")
                 </button>
-                <a asp-action="Index" class="btn btn-secondary">
+                <a asp-action="@(isAdmin ? "Manage" : "MyOrders")" class="btn btn-secondary">
                     <i class="fas fa-times"></i> Cancel
                 </a>
             </div>
@@ -79,7 +98,7 @@
             </div>
             <div class="card-body">
                 <div id="orderSummary">
-                    <p class="text-muted">Select customer and product to see order summary</p>
+                    <p class="text-muted">Select @(isAdmin ? "customer and " : "")product to see order summary</p>
                 </div>
             </div>
         </div>
@@ -97,11 +116,12 @@
         let productName = '';
 
         const productSelect = document.getElementById('productSelect');
-        const qtyInput      = document.getElementById('quantityInput');
-        const unitPriceEl   = document.getElementById('unitPriceDisplay');
-        const totalPriceEl  = document.getElementById('totalPriceDisplay');
-        const stockWarnEl   = document.getElementById('stockWarning');
-        const submitBtn     = document.getElementById('submitBtn');
+        const qtyInput = document.getElementById('quantityInput');
+        const unitPriceEl = document.getElementById('unitPriceDisplay');
+        const totalPriceEl = document.getElementById('totalPriceDisplay');
+        const stockWarnEl = document.getElementById('stockWarning');
+        const submitBtn = document.getElementById('submitBtn');
+        const customerSelect = document.getElementById('customerSelect');
 
         productSelect.addEventListener('change', async function () {
             const pid = this.value;
@@ -114,7 +134,7 @@
 
                 if (data && data.success) {
                     unitPrice = Number(data.price) || 0;
-                    inStock   = Number(data.stock) || 0;
+                    inStock = Number(data.stock) || 0;
                     productName = data.productName || '';
 
                     unitPriceEl.value = '$' + unitPrice.toFixed(2);
@@ -138,6 +158,15 @@
             updateTotals();
             updateSummary();
         });
+
+        @if (isAdmin)
+        {
+                <text>
+                if (customerSelect) {
+                    customerSelect.addEventListener('change', updateSummary);
+                }
+                </text>
+        }
 
         function validateQty() {
             const q = Number(qtyInput.value) || 0;
@@ -166,13 +195,24 @@
         }
 
         function updateSummary() {
-            const custSel = document.getElementById('customerSelect');
             const summary = document.getElementById('orderSummary');
-            const custTxt = custSel.value ? custSel.options[custSel.selectedIndex].text : '(none)';
-            const q       = Number(qtyInput.value) || 0;
-            const total   = unitPrice * q;
+            const q = Number(qtyInput.value) || 0;
+            const total = unitPrice * q;
 
-            if (custSel.value && productSelect.value && q > 0) {
+            @if (isAdmin)
+            {
+                    <text>
+                    const custTxt = customerSelect && customerSelect.value ? customerSelect.options[customerSelect.selectedIndex].text : '(select customer)';
+                    </text>
+            }
+            else if (isCustomer)
+            {
+                    <text>
+                    const custTxt = '@User.Identity.Name';
+                    </text>
+            }
+
+            if ((@(isAdmin ? "true" : "false") ? customerSelect && customerSelect.value : true) && productSelect.value && q > 0) {
                 summary.innerHTML = `
                   <div class="alert alert-info">
                     <h6><i class="fas fa-shopping-cart"></i> Order Preview</h6>
@@ -184,7 +224,7 @@
                     <hr>
                     <div class="row"><div class="col-6"><strong>Total:</strong></div><div class="col-6 text-end"><span class="text-success h5">$${total.toFixed(2)}</span></div></div>
                   </div>`;
-            } else if (custSel.value && productSelect.value) {
+            } else if (productSelect.value) {
                 summary.innerHTML = `
                   <div class="alert alert-warning">
                     <h6><i class="fas fa-exclamation-triangle"></i> Almost Ready</h6>
@@ -195,8 +235,8 @@
             } else {
                 summary.innerHTML = `
                   <div class="alert alert-secondary">
-                    <h6><i class="fas a-clipboard-list"></i> Order Summary</h6>
-                    <p class="text-muted mb-0">Select customer and product to see order preview</p>
+                    <h6><i class="fas fa-clipboard-list"></i> Order Summary</h6>
+                    <p class="text-muted mb-0">Select @(isAdmin ? "customer and " : "")product to see order preview</p>
                   </div>`;
             }
         }
@@ -212,4 +252,3 @@
         document.addEventListener('DOMContentLoaded', updateSummary);
     </script>
 }
-

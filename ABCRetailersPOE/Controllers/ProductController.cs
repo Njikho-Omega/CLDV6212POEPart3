@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ABCRetailersPOE.Services;
 using ABCRetailersPOE.Models;
-using ABCRetailersPOE.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-namespace ABCRetailersPOE.Controllers
+namespace ABCRetailers.Controllers
 {
+    [Authorize] // 🔐 Protects all actions in this controller
     public class ProductController : Controller
     {
         private readonly IFunctionsApi _api;
@@ -15,15 +17,21 @@ namespace ABCRetailersPOE.Controllers
             _logger = logger;
         }
 
+        // ✅ Both Admin and Customer can view products
+        [Authorize(Roles = "Admin,Customer")]
         public async Task<IActionResult> Index()
         {
             var products = await _api.GetProductsAsync();
             return View(products);
         }
 
+        // ✅ Only Admin can Create a product
+        [Authorize(Roles = "Admin")]
         public IActionResult Create() => View();
 
+        // ✅ Only Admin can POST a product
         [HttpPost, ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(Product product, IFormFile? imageFile)
         {
             if (!ModelState.IsValid) return View(product);
@@ -41,6 +49,8 @@ namespace ABCRetailersPOE.Controllers
             }
         }
 
+        // ✅ Only Admin can Edit a product
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             if (string.IsNullOrWhiteSpace(id)) return NotFound();
@@ -48,7 +58,9 @@ namespace ABCRetailersPOE.Controllers
             return product is null ? NotFound() : View(product);
         }
 
+        // ✅ Only Admin can POST an edit
         [HttpPost, ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(Product product, IFormFile? imageFile)
         {
             if (!ModelState.IsValid) return View(product);
@@ -66,7 +78,9 @@ namespace ABCRetailersPOE.Controllers
             }
         }
 
+        // ✅ Only Admin can Delete a product
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             try

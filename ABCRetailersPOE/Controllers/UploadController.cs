@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ABCRetailersPOE.Models;
 using ABCRetailersPOE.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ABCRetailersPOE.Controllers
 {
+    [Authorize]
     public class UploadController : Controller
     {
         private readonly IFunctionsApi _api;

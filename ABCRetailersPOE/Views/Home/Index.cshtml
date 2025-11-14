@@ -5,121 +5,104 @@
 
 <div class="text-center mb-5">
     <h1 class="display-4 text-primary">
-        <i class="fas fa-futbol"></i> Welcome to ABC Retailers!
+        <i class="fas fa-store"></i> Welcome to ABC Retailers!
     </h1>
-    <p class="lead">Gear up like a champion, top football gear here!</p>
+    <p class="lead">Your one-stop shop for the best deals and latest products</p>
 </div>
 
-<style>
-    body {
-        background-color: #0B132B; 
-        color: #fff;
-    }
+<!-- ============================= -->
+<!--        QUICK ACTION BUTTONS   -->
+<!-- ============================= -->
 
-    .btn-primary {
-        background-color: #004D98;
-        border-color: #004D98;
-    }
-
-    .btn-success {
-        background-color: #A50044;
-        border-color: #A50044;
-    }
-
-    .btn-warning {
-        background-color: #FDB913; 
-        border-color: #FDB913;
-        color: #000;
-    }
-
-    .btn-info {
-        background-color: #004D98; 
-        border-color: #004D98;
-    }
-
-        .btn-warning:hover, .btn-success:hover, .btn-primary:hover, .btn-info:hover {
-            filter: brightness(90%);
-        }
-
-    .card, .alert {
-        background-color: rgba(0, 0, 0, 0.6);
-        border: none;
-    }
-
-    h1, h2, h5, p, span, small {
-        color: #fff;
-    }
-
-    .display-4 i {
-        color: #FDB913;
-    }
-
-    .text-primary {
-        color: #FDB913 !important;
-    }
-
-    .btn, .card {
-        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    }
-
-    a.alert-link {
-        color: #FDB913;
-        font-weight: bold;
-    }
-
-    .card {
-        background-color: rgba(255, 255, 255, 0.08);
-        color: #f8f9fa;
-    }
-
-    .card-title,
-    .card-text,
-    .card-body small {
-        color: #f8f9fa !important;
-    }
-
-    .card-img-top {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .card-body {
-        background: rgba(0, 0, 0, 0.3); 
-        padding: 0.75rem;
-        border-radius: 0 0 5px 5px;
-    }
-</style>
-
-<!-- Action Buttons -->
-<div class="row mb-5">
-    <div class="col-md-3 mb-3">
-        <a asp-controller="Customer" asp-action="Index" class="btn btn-primary btn-lg w-100 h-100 d-flex flex-column justify-content-center">
-            <i class="fas fa-user-friends fa-2x mb-2"></i>
+<div class="row mb-5 g-3">
+    <!-- Customers -->
+    <div class="col-md-3 col-sm-6">
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <a asp-controller="Login" asp-action="Index"
+           class="btn btn-primary btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-users fa-2x mb-2"></i>
             <span>View Customers</span>
-            <small class="text-light">(@Model.CustomerCount total)</small>
         </a>
+    }
+    else if (User.IsInRole("Admin"))
+    {
+        <a asp-controller="Customer" asp-action="Index"
+           class="btn btn-primary btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+            <i class="fas fa-users fa-2x mb-2"></i>
+            <span>View Customers</span>
+        </a>
+    }
+    else
+    {
+      
+    }
+</div>
+
+
+    <!-- Products -->
+    <div class="col-md-3 col-sm-6">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Login" asp-action="Index"
+               class="btn btn-success btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                <i class="fas fa-box fa-2x mb-2"></i>
+                <span>View Products</span>
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Product" asp-action="Index"
+               class="btn btn-success btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                <i class="fas fa-box fa-2x mb-2"></i>
+                <span>View Products</span>
+            </a>
+        }
     </div>
-    <div class="col-md-3 mb-3">
-        <a asp-controller="Product" asp-action="Index" class="btn btn-success btn-lg w-100 h-100 d-flex flex-column justify-content-center">
-            <i class="fas fa-box fa-2x mb-2"></i>
-            <span>View Products</span>
-            <small class="text-light">(@Model.ProductCount total)</small>
-        </a>
+
+    <!-- Orders -->
+    <div class="col-md-3 col-sm-6">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Login" asp-action="Index"
+               class="btn btn-warning btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                <i class="fas fa-shopping-cart fa-2x mb-2"></i>
+                <span>View Orders</span>
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Order" asp-action="Index"
+               class="btn btn-warning btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                <i class="fas fa-shopping-cart fa-2x mb-2"></i>
+                <span>View Orders</span>
+            </a>
+        }
     </div>
-    <div class="col-md-3 mb-3">
-        <a asp-controller="Order" asp-action="Index" class="btn btn-warning btn-lg w-100 h-100 d-flex flex-column justify-content-center">
-            <i class="fas fa-shopping-cart fa-2x mb-2"></i>
-            <span>View Orders</span>
-            <small class="text-light">(@Model.OrderCount total)</small>
-        </a>
-    </div>
-    <div class="col-md-3 mb-3">
-        <a asp-controller="Upload" asp-action="Index" class="btn btn-info btn-lg w-100 h-100 d-flex flex-column justify-content-center">
-            <i class="fas fa-upload fa-2x mb-2"></i>
-            <span>Upload Files</span>
-            <small class="text-light">(Payment proofs)</small>
-        </a>
+
+    <!-- Upload -->
+    <div class="col-md-3 col-sm-6">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Login" asp-action="Index"
+               class="btn btn-info btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                <i class="fas fa-upload fa-2x mb-2"></i>
+                <span>Upload Files</span>
+                <small class="text-light">(Payment proofs)</small>
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Upload" asp-action="Index"
+               class="btn btn-info btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                <i class="fas fa-upload fa-2x mb-2"></i>
+                <span>Upload Files</span>
+                <small class="text-light">(Payment proofs)</small>
+            </a>
+        }
     </div>
 </div>
+
 
 <!-- Storage Initialization (if needed) -->
 @if (Model.CustomerCount == 0 && Model.ProductCount == 0 && Model.OrderCount == 0)

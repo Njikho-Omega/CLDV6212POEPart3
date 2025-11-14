@@ -1,0 +1,182 @@
+﻿@model ABCRetailersPOE.Models.ViewModels.CartPageViewModel
+
+@{
+    ViewData["Title"] = "My Cart";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+@if (!Model.Items.Any())
+{
+    <div class="alert alert-info">Your cart is empty.</div>
+    <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Continue Shopping</a>
+}
+else
+{
+    <!-- Update Quantities Form -->
+    <form asp-action="UpdateQuantities" method="post" id="cartForm">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Product</th>
+                        <th style="width:120px;">Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Items.Count; i++)
+                    {
+                        var item = Model.Items[i];
+                        <tr>
+                            <td>
+                                @item.ProductName
+                                <input type="hidden" name="items[@i].ProductId" value="@item.ProductId" />
+                                <input type="hidden" name="items[@i].ProductName" value="@item.ProductName" />
+                                <input type="hidden" name="items[@i].UnitPrice" value="@item.UnitPrice" />
+                            </td>
+                            <td>
+                                <input type="number" name="items[@i].Quantity" value="@item.Quantity" min="1"
+                                       class="form-control quantity-input" data-product-id="@item.ProductId"
+                                       data-unit-price="@item.UnitPrice" />
+                            </td>
+                            <td>@item.UnitPrice.ToString("C")</td>
+                            <td class="subtotal" data-product-id="@item.ProductId">
+                                @item.Subtotal.ToString("C")
+                            </td>
+                            <td>
+                                <!-- Remove button - using JavaScript to submit form -->
+                                <button type="button" class="btn btn-danger btn-sm remove-btn"
+                                        data-product-id="@item.ProductId" data-product-name="@item.ProductName">
+                                    <i class="fas fa-trash-alt"></i> Remove
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot class="fw-bold">
+                    <tr>
+                        <td colspan="3" class="text-end">Total</td>
+                        <td colspan="2" id="grandTotal">@Model.Total.ToString("C")</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between mt-3">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sync-alt"></i> Update Cart
+            </button>
+
+            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary">
+                <i class="fas fa-shopping-bag"></i> Continue Shopping
+            </a>
+
+            <!-- Checkout button - using JavaScript to submit -->
+            <button type="button" class="btn btn-success" id="checkoutBtn">
+                <i class="fas fa-credit-card"></i> Checkout
+            </button>
+        </div>
+    </form>
+
+    <!-- Hidden Remove Form -->
+    <form asp-action="Remove" method="post" id="removeForm" style="display: none;">
+        <input type="hidden" name="productId" id="removeProductId" />
+        @Html.AntiForgeryToken()
+    </form>
+
+    <!-- Hidden Checkout Form -->
+    <form asp-action="Checkout" method="post" id="checkoutForm" style="display: none;">
+        @Html.AntiForgeryToken()
+    </form>
+}
+
+@section Scripts {
+    <script>
+        // Real-time subtotal calculation
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+
+            quantityInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    const unitPrice = parseFloat(this.getAttribute('data-unit-price'));
+                    const quantity = parseInt(this.value) || 0;
+                    const subtotal = unitPrice * quantity;
+
+                    // Update subtotal display
+                    const subtotalElement = document.querySelector(`.subtotal[data-product-id="${productId}"]`);
+                    if (subtotalElement) {
+                        subtotalElement.textContent = '$' + subtotal.toFixed(2);
+                    }
+
+                    // Update grand total
+                    updateGrandTotal();
+                });
+            });
+
+            function updateGrandTotal() {
+                let grandTotal = 0;
+                const subtotalElements = document.querySelectorAll('.subtotal');
+
+                subtotalElements.forEach(element => {
+                    const subtotalText = element.textContent.replace('$', '');
+                    grandTotal += parseFloat(subtotalText) || 0;
+                });
+
+                document.getElementById('grandTotal').textContent = '$' + grandTotal.toFixed(2);
+            }
+
+            // Remove button functionality
+            const removeButtons = document.querySelectorAll('.remove-btn');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    const productName = this.getAttribute('data-product-name');
+
+                    if (confirm(`Are you sure you want to remove "${productName}" from your cart?`)) {
+                        document.getElementById('removeProductId').value = productId;
+                        document.getElementById('removeForm').submit();
+                    }
+                });
+            });
+
+            // Checkout button functionality
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', function() {
+                    if (confirm('Are you sure you want to checkout? This will place orders for all items in your cart.')) {
+                        // First, submit the update form to save any quantity changes
+                        const cartForm = document.getElementById('cartForm');
+                        if (cartForm) {
+                            // Create a temporary submit to save quantities
+                            const tempSubmit = document.createElement('button');
+                            tempSubmit.type = 'submit';
+                            tempSubmit.style.display = 'none';
+                            cartForm.appendChild(tempSubmit);
+
+                            // Submit the update form first
+                            cartForm.addEventListener('submit', function handler(e) {
+                                e.preventDefault();
+                                cartForm.removeEventListener('submit', handler);
+
+                                // After update completes, submit checkout
+                                setTimeout(() => {
+                                    document.getElementById('checkoutForm').submit();
+                                }, 100);
+                            });
+
+                            tempSubmit.click();
+                            cartForm.removeChild(tempSubmit);
+                        } else {
+                            // If no update needed, just checkout
+                            document.getElementById('checkoutForm').submit();
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+}

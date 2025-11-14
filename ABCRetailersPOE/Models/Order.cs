@@ -5,7 +5,7 @@ namespace ABCRetailersPOE.Models
     {
         Submitted,
         Processing,
-        Completed,
+        Processed,
         Cancelled
     }
 

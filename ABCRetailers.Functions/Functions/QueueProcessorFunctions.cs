@@ -7,7 +7,7 @@ public class QueueProcessorFunctions
 {
     [Function("OrderNotifications_Processor")]
     public void OrderNotificationsProcessor(
-        [QueueTrigger("%QUEUE_ORDER_NOTIFICATIONS%", Connection = "STORAGE_CONNECTION")] string message,
+        [QueueTrigger("%QUEUE_ORDER_NOTIFICATIONS%", Connection = "DefaultEndpointsProtocol=https;AccountName=abcretailerss;AccountKey=GNi356R5w/C76ArDAPE0QBligI0ivkuJzv+VkRUAEMAhKXZr/svB6iwFiBpLOQ727gzPUUKpbz6W+AStyocBLw==;EndpointSuffix=core.windows.net")] string message,
         FunctionContext ctx)
     {
         var log = ctx.GetLogger("OrderNotifications_Processor");

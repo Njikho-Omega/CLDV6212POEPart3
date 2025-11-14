@@ -15,6 +15,8 @@ public class CustomerEntity : ITableEntity
     public string Username { get; set; } = "";
     public string Email { get; set; } = "";
     public string ShippingAddress { get; set; } = "";
+
+    public string Role { get; set; } = "Customer";
 }
 
 public class ProductEntity : ITableEntity

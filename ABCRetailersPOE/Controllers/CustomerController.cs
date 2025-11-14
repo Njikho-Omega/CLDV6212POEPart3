@@ -1,28 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ABCRetailersPOE.Models;
 using ABCRetailersPOE.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ABCRetailersPOE.Controllers
 {
+    [Authorize]
     public class CustomerController : Controller
     {
         private readonly IFunctionsApi _api;
         public CustomerController(IFunctionsApi api) => _api = api;
 
-        public async Task<IActionResult> Index(string search)
+        public async Task<IActionResult> Index()
         {
-            List<Customer> customers;
-
-            if (!string.IsNullOrWhiteSpace(search))
-            {
-                customers = await _api.SearchCustomersAsync(search);
-                ViewBag.SearchTerm = search;
-            }
-            else
-            {
-                customers = await _api.GetCustomersAsync();
-            }
-
+            var customers = await _api.GetCustomersAsync();
             return View(customers);
         }
 

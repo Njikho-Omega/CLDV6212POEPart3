@@ -7,6 +7,7 @@ using ABCRetailers.Functions.Helpers;
 using ABCRetailers.Functions.Models;
 
 namespace ABCRetailers.Functions.Functions;
+
 public class CustomersFunctions
 {
     private readonly string _conn;
@@ -14,7 +15,7 @@ public class CustomersFunctions
 
     public CustomersFunctions(IConfiguration cfg)
     {
-        _conn = cfg["STORAGE_CONNECTION"] ?? throw new InvalidOperationException("STORAGE_CONNECTION missing");
+        _conn = "DefaultEndpointsProtocol=https;AccountName=abcretailerss;AccountKey=GNi356R5w/C76ArDAPE0QBligI0ivkuJzv+VkRUAEMAhKXZr/svB6iwFiBpLOQ727gzPUUKpbz6W+AStyocBLw==;EndpointSuffix=core.windows.net";
         _table = cfg["TABLE_CUSTOMER"] ?? "Customer";
     }
 
@@ -26,8 +27,11 @@ public class CustomersFunctions
         await table.CreateIfNotExistsAsync();
 
         var items = new List<CustomerDto>();
-        await foreach (var e in table.QueryAsync<CustomerEntity>(x => x.PartitionKey == "Customer"))
+        await foreach (var e in table.QueryAsync<CustomerEntity>(
+            x => x.PartitionKey == "Customer" && x.Role == "Customer"))
+        {
             items.Add(Map.ToDto(e));
+        }
 
         return await HttpJson.Ok(req, items);
     }
@@ -48,7 +52,13 @@ public class CustomersFunctions
         }
     }
 
-    public record CustomerCreateUpdate(string? Name, string? Surname, string? Username, string? Email, string? ShippingAddress);
+    public record CustomerCreateUpdate(
+        string? Name,
+        string? Surname,
+        string? Username,
+        string? Email,
+        string? ShippingAddress
+    );
 
     [Function("Customers_Create")]
     public async Task<HttpResponseData> Create(
@@ -67,8 +77,10 @@ public class CustomersFunctions
             Surname = input.Surname ?? "",
             Username = input.Username ?? "",
             Email = input.Email!,
-            ShippingAddress = input.ShippingAddress ?? ""
+            ShippingAddress = input.ShippingAddress ?? "",
+            Role = "Customer"
         };
+
         await table.AddEntityAsync(e);
 
         return await HttpJson.Created(req, Map.ToDto(e));
@@ -93,6 +105,8 @@ public class CustomersFunctions
             e.Email = input.Email ?? e.Email;
             e.ShippingAddress = input.ShippingAddress ?? e.ShippingAddress;
 
+            e.Role = e.Role ?? "Customer";
+
             await table.UpdateEntityAsync(e, e.ETag, TableUpdateMode.Replace);
             return await HttpJson.Ok(req, Map.ToDto(e));
         }
@@ -113,7 +127,7 @@ public class CustomersFunctions
 
     [Function("Customers_Search")]
     public async Task<HttpResponseData> Search(
-    [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "customers/search")] HttpRequestData req)
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "customers/search")] HttpRequestData req)
     {
         var query = req.Query["q"];
         if (string.IsNullOrWhiteSpace(query))
@@ -126,7 +140,8 @@ public class CustomersFunctions
 
         var items = new List<CustomerDto>();
 
-        await foreach (var entity in table.QueryAsync<CustomerEntity>(x => x.PartitionKey == "Customer"))
+        await foreach (var entity in table.QueryAsync<CustomerEntity>(
+            x => x.PartitionKey == "Customer" && x.Role == "Customer"))
         {
             if (entity.Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
                 entity.Surname.Contains(query, StringComparison.OrdinalIgnoreCase) ||

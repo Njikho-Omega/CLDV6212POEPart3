@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ABCRetailersPOE.Models;
 
-namespace ABCRetailersPOE.Models.ViewModels
+namespace ABCRetailers.Models.ViewModels
 {
     public class OrderCreateViewModel
     {

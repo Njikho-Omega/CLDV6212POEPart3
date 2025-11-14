@@ -18,7 +18,7 @@ public class ProductsFunctions
 
     public ProductsFunctions(IConfiguration cfg)
     {
-        _conn = cfg["STORAGE_CONNECTION"] ?? throw new InvalidOperationException("STORAGE_CONNECTION missing");
+        _conn = "DefaultEndpointsProtocol=https;AccountName=abcretailerss;AccountKey=GNi356R5w/C76ArDAPE0QBligI0ivkuJzv+VkRUAEMAhKXZr/svB6iwFiBpLOQ727gzPUUKpbz6W+AStyocBLw==;EndpointSuffix=core.windows.net";
         _table = cfg["TABLE_PRODUCT"] ?? "Product";
         _images = cfg["BLOB_PRODUCT_IMAGES"] ?? "product-images";
     }

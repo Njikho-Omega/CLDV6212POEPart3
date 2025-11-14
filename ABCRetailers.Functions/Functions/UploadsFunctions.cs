@@ -16,7 +16,7 @@ public class UploadsFunctions
 
     public UploadsFunctions(IConfiguration cfg)
     {
-        _conn = cfg["STORAGE_CONNECTION"] ?? throw new InvalidOperationException("STORAGE_CONNECTION missing");
+        _conn = "DefaultEndpointsProtocol=https;AccountName=abcretailerss;AccountKey=GNi356R5w/C76ArDAPE0QBligI0ivkuJzv+VkRUAEMAhKXZr/svB6iwFiBpLOQ727gzPUUKpbz6W+AStyocBLw==;EndpointSuffix=core.windows.net";
         _proofs = cfg["BLOB_PAYMENT_PROOFS"] ?? "payment-proofs";
         _share = cfg["FILESHARE_CONTRACTS"] ?? "contracts";
         _shareDir = cfg["FILESHARE_DIR_PAYMENTS"] ?? "payments";

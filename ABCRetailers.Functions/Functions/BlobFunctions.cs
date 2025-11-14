@@ -7,7 +7,7 @@ public class BlobFunctions
 {
     [Function("OnProductImageUploaded")]
     public void OnProductImageUploaded(
-        [BlobTrigger("%BLOB_PRODUCT_IMAGES%/{name}", Connection = "STORAGE_CONNECTION")] Stream blob,
+        [BlobTrigger("%BLOB_PRODUCT_IMAGES%/{name}", Connection = "DefaultEndpointsProtocol=https;AccountName=abcretailerss;AccountKey=GNi356R5w/C76ArDAPE0QBligI0ivkuJzv+VkRUAEMAhKXZr/svB6iwFiBpLOQ727gzPUUKpbz6W+AStyocBLw==;EndpointSuffix=core.windows.net")] Stream blob,
         string name,
         FunctionContext ctx)
     {
