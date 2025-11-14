@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|c:\\users\\omega\\documents\\school\\cldv\\poepart2\\cldv6212poepart2-\\abcretailerspoe\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|c:\\users\\omega\\documents\\school\\cldv\\poepart2\\cldv6212poepart2-\\abcretailerspoe\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|c:\\users\\omega\\documents\\school\\cldv\\poepart2\\cldv6212poepart2-\\abcretailerspoe\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|solutionrelative:views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -21,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|c:\\users\\omega\\documents\\school\\cldv\\poepart2\\cldv6212poepart2-\\abcretailerspoe\\views\\order\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|solutionrelative:views\\order\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|c:\\users\\omega\\documents\\school\\cldv\\poepart2\\cldv6212poepart2-\\abcretailerspoe\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ACB1FE3E-577F-454C-AE24-8D5EB0A31D15}|ABCRetailersPOE.csproj|c:\\users\\omega\\documents\\school\\cldv\\poepart2\\cldv6212poepart2-\\abcretailerspoe\\views\\home\\admindashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -46,11 +50,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-14T16:44:57.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "FunctionsApiClient.cs",
               "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Services\\FunctionsApiClient.cs",
               "RelativeDocumentMoniker": "Services\\FunctionsApiClient.cs",
@@ -58,12 +75,11 @@
               "RelativeToolTip": "Services\\FunctionsApiClient.cs",
               "ViewState": "AgIAAJkAAAAAAAAAAAAswKMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T16:01:25.797Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T16:01:25.797Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Views\\Order\\Edit.cshtml",
               "RelativeDocumentMoniker": "Views\\Order\\Edit.cshtml",
@@ -71,12 +87,11 @@
               "RelativeToolTip": "Views\\Order\\Edit.cshtml",
               "ViewState": "AgIAAEsAAAAAAAAAAAAAAHkAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-14T15:46:14.341Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T15:46:14.341Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Views\\Order\\Details.cshtml",
               "RelativeDocumentMoniker": "Views\\Order\\Details.cshtml",
@@ -84,12 +99,11 @@
               "RelativeToolTip": "Views\\Order\\Details.cshtml",
               "ViewState": "AgIAACEAAAAAAAAAAAAAAE8AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-14T15:46:01.863Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T15:46:01.863Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "AdminDashboard.cshtml",
               "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Views\\Home\\AdminDashboard.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\AdminDashboard.cshtml",
@@ -97,25 +111,24 @@
               "RelativeToolTip": "Views\\Home\\AdminDashboard.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-14T15:42:56.793Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T15:42:56.793Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAABgAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-14T15:27:09.035Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "MyOrders.cshtml",
               "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Views\\Order\\MyOrders.cshtml",
               "RelativeDocumentMoniker": "Views\\Order\\MyOrders.cshtml",
@@ -123,12 +136,11 @@
               "RelativeToolTip": "Views\\Order\\MyOrders.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-14T15:23:07.212Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T15:23:07.212Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Views\\Order\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Order\\Index.cshtml",
@@ -141,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Models\\Order.cs",
               "RelativeDocumentMoniker": "Models\\Order.cs",
@@ -149,12 +161,11 @@
               "RelativeToolTip": "Models\\Order.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T14:10:50.306Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T14:10:50.306Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "OrderController.cs",
               "DocumentMoniker": "C:\\Users\\Omega\\Documents\\School\\CLDV\\POEPart2\\CLDV6212POEPart2-\\ABCRetailersPOE\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "Controllers\\OrderController.cs",
@@ -162,8 +173,7 @@
               "RelativeToolTip": "Controllers\\OrderController.cs",
               "ViewState": "AgIAAD4AAAAAAAAAAAAuwHAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T14:04:39.871Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T14:04:39.871Z"
             }
           ]
         }
